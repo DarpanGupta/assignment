@@ -1,0 +1,51 @@
+
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-4'>
+            </div>
+        </div>
+        <div class='table table-bordered'>
+            <table class='table'
+                *ngIf='employees && employees.length' >
+                <thead>
+                    <tr>
+                        <th>
+        
+                        </th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Address 1</th>
+                        <th>Address 2</th>
+                        <th>Postal Code</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor ='let employee of employees' >
+                      <td></td>
+                      <td>{{employee.id}}</td>
+                      <td>{{employee.name}}</td>
+                      <td>{{employee.phone}}</td>
+                      <td>{{employee.address.city}}</td>
+                      <td>{{employee.address.address_line1}}</td>
+                      <td>{{employee.address.address_line2}}</td>
+                      <td>{{employee.address.postal_code}}</td>
+
+
+                      
+
+
+
+                      </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+

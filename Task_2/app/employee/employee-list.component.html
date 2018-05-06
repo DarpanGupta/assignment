@@ -1,0 +1,106 @@
+<div class="row" style="text-align: center">
+    <h1>Employee Data Table</h1>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <form name="empAddForm" (ngSubmit)="addNew()" #empAddForm="ngForm">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success">Add New</button>
+                <input type="text" [(ngModel)]="queryString" id="search" name="search" placeholder="Type to search">
+            </div>
+            <table class="table table-striped" *ngIf="showAddForm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Address 1</th>
+                        <th>Address 2</th>
+                        <th>Postal Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td >
+                            <input type="number" class="form-control" name="userId" id="usrId" [(ngModel)]="usrId">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="name" required
+                            minlength="4" name="userName" [(ngModel)]="name" #userNameVar="ngModel" />
+                            <span class="help-block" *ngIf="(userNameVar.touched ||
+                            userNameVar.dirty || userNameVar.id !== 0) &&
+                            userNameVar.errors">
+<span *ngIf="userNameVar.errors.minlength">
+   Name must be at least four characters.
+</span>
+</span>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="phone" required name="userPhone" [(ngModel)]="phone" #userPhoneVar="ngModel">
+                            <span class="help-block" *ngIf="(userPhoneVar.touched ||
+                            userPhoneVar.dirty || userPhoneVar.id !== 0) &&
+                            userPhoneVar.errors">
+<span *ngIf="userPhoneVar.errors.required">
+   Phone should contain only digits.
+</span>
+</span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="city" name="userCity" [(ngModel)]="city">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="address-one" name="userAddressOne" [(ngModel)]="addressOne">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="address-two" name="userAddressTwo" [(ngModel)]="addressTwo">
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="postal-code" name="userNumber" [(ngModel)]="postalCode">
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>Postal Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let employee of employees |FilterPipe: queryString'>
+
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.phone}}</td>
+                    <td>{{employee.address.city}}</td>
+                    <td>{{employee.address.address_line1}}</td>
+                    <td>{{employee.address.address_line2}}</td>
+                    <td>{{employee.address.postal_code}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
